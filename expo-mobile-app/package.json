@@ -11,6 +11,8 @@
     "web": "DARK_MODE=media expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
+    "format:check": "prettier --check */**.{js,ts,tsx,mjs,cjs,json}",
+    "format:write": "prettier --check */**.{js,ts,tsx,mjs,cjs,json} --write",
     "postinstall": "patch-package"
   },
   "jest": {
@@ -52,6 +54,7 @@
     "jest": "^29.2.1",
     "jest-expo": "~51.0.3",
     "jscodeshift": "^0.15.2",
+    "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
