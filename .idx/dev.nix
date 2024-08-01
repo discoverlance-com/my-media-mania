@@ -20,6 +20,9 @@
     extensions = [
       # "vscodevim.vim"
       "dsznajder.es7-react-js-snippets"
+      "esbenp.prettier-vscode"
+      "dbaeumer.vscode-eslint"
+      "bradlc.vscode-tailwindcss"
     ];
 
     # Enable previews
