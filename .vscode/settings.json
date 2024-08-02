@@ -1,5 +1,9 @@
 {
-  "tailwindCSS.experimental.classRegex": [
-    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+	"tailwindCSS.experimental.classRegex": [
+		["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	],
+	"prettier.printWidth": 80,
+	"prettier.tabWidth": 2,
+	"editor.tabSize": 2,
+	"prettier.useTabs": true
 }
