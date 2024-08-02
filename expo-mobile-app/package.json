@@ -13,8 +13,8 @@
     "lint": "expo lint",
     "format:check": "prettier --check */**.{js,ts,tsx,mjs,cjs,json}",
     "format:write": "prettier --check */**.{js,ts,tsx,mjs,cjs,json} --write",
-    "build:configure": "eas build:configure",
-    "build:android": "eas build --platform android",
+    "build:configure": "npx eas build:configure",
+    "build:android": "npx eas build --platform android",
     "postinstall": "patch-package"
   },
   "jest": {
