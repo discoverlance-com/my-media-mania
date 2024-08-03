@@ -17,12 +17,14 @@
 				"image": "latest"
 			},
 			"env": {
-				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://apiconsumetorgclone-lance-armahabrahams-projects.vercel.app"
+				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://apiconsumetorgclone-lance-armahabrahams-projects.vercel.app",
+				"EXPO_PUBLIC_LOGIN_API_URL": "https://short-gecko-63.deno.dev"
 			}
 		},
 		"production": {
 			"env": {
-				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://discoverlance-api-consumet-org.web.app"
+				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://discoverlance-api-consumet-org.web.app",
+				"EXPO_PUBLIC_LOGIN_API_URL": "https://short-gecko-63.deno.dev"
 			}
 		}
 	},
