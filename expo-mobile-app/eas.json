@@ -1,18 +1,22 @@
 {
-  "cli": {
-    "version": ">= 10.2.2"
-  },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {}
-  },
-  "submit": {
-    "production": {}
-  }
+	"cli": {
+		"version": ">= 10.2.2"
+	},
+	"build": {
+		"development": {
+			"developmentClient": true,
+			"distribution": "internal"
+		},
+		"preview": {
+			"distribution": "internal"
+		},
+		"production": {
+			"env": {
+				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://discoverlance-api-consumet-org.web.app"
+			}
+		}
+	},
+	"submit": {
+		"production": {}
+	}
 }

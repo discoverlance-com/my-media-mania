@@ -5,6 +5,7 @@
   "scripts": {
     "start": "expo start",
     "dev": "expo start --tunnel",
+    "dev:android": "expo start --tunnel --android",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "DARK_MODE=media expo start --android",
     "ios": "DARK_MODE=media expo start --ios",
@@ -21,6 +22,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "^14.0.2",
     "@gluestack-ui/button": "^1.0.7",
     "@gluestack-ui/form-control": "^0.1.18",
@@ -29,6 +31,7 @@
     "@gluestack-ui/nativewind-utils": "^1.0.23",
     "@gluestack-ui/overlay": "^0.1.15",
     "@gluestack-ui/toast": "^1.0.7",
+    "@hookform/resolvers": "^3.9.0",
     "@react-navigation/native": "^6.0.2",
     "babel-plugin-module-resolver": "^5.0.2",
     "expo": "~51.0.24",
@@ -37,14 +40,17 @@
     "expo-font": "~12.0.9",
     "expo-linking": "~6.3.1",
     "expo-router": "~3.5.20",
+    "expo-secure-store": "~13.0.2",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-system-ui": "~3.0.7",
     "expo-web-browser": "~13.0.3",
     "lucide-react": "^0.419.0",
+    "lucide-react-native": "^0.424.0",
     "nativewind": "^4.0.36",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.52.1",
     "react-native": "0.74.3",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-reanimated": "~3.10.1",
@@ -52,7 +58,8 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "~0.19.10",
-    "tailwindcss": "^3.4.7"
+    "tailwindcss": "^3.4.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
