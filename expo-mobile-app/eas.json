@@ -11,13 +11,11 @@
 			"distribution": "internal",
 			"android": {
 				"buildType": "apk",
-				"gradleCommand": ":app:assembleRelease",
 				"image": "latest"
 			},
 			"ios": {
 				"image": "latest"
 			},
-			"developmentClient": true,
 			"env": {
 				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://apiconsumetorgclone-lance-armahabrahams-projects.vercel.app"
 			}

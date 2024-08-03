@@ -26,6 +26,7 @@
       "dbaeumer.vscode-eslint"
       "bradlc.vscode-tailwindcss"
       "denoland.vscode-deno"
+      "eamodio.gitlens"
     ];
 
     # Enable previews
