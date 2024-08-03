@@ -8,7 +8,15 @@
 			"distribution": "internal"
 		},
 		"preview": {
-			"distribution": "internal"
+			"distribution": "internal",
+			"android": {
+				"buildType": "apk",
+				"gradleCommand": ":app:assembleRelease"
+			},
+			"developmentClient": true,
+			"env": {
+				"EXPO_PUBLIC_CONSUMET_BASE_API_URL": "https://apiconsumetorgclone-lance-armahabrahams-projects.vercel.app"
+			}
 		},
 		"production": {
 			"env": {

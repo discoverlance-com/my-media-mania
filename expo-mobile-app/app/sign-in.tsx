@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { ImageBackground } from 'react-native'
 import { LogInIcon } from 'lucide-react-native'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'expo-router'
 
 import {
 	FormControl,
@@ -28,6 +29,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { Card } from '@/components/ui/card'
 import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
+import { useSession } from '@/providers/AuthProvider'
+import { HTTPError } from 'ky'
 
 const formSchema = z.object({
 	email: z
@@ -38,8 +41,11 @@ const formSchema = z.object({
 		.min(1, 'Password is required'),
 })
 
-export default function HomeScreen() {
-	const { control, handleSubmit, formState } = useForm<
+export default function SigninScreen() {
+	const router = useRouter()
+	const { signInWithPassword } = useSession()
+
+	const { control, handleSubmit, formState, setError } = useForm<
 		z.infer<typeof formSchema>
 	>({
 		resolver: zodResolver(formSchema),
@@ -50,10 +56,19 @@ export default function HomeScreen() {
 	})
 
 	const onSubmit = async (data: z.infer<typeof formSchema>) => {
-		await new Promise((resolve) => {
-			setTimeout(resolve, 4000)
-		})
-		console.log({ data })
+		try {
+			await signInWithPassword(data.email, data.password)
+			router.replace('/')
+		} catch (error) {
+			if (error instanceof HTTPError) {
+				const errorJSON = await error.response.json<{ message: string }>()
+				setError('email', { message: errorJSON.message })
+				return
+			}
+
+			setError('email', { message: 'Unable to log user in. Try again!' })
+			return
+		}
 	}
 
 	return (
@@ -120,7 +135,7 @@ export default function HomeScreen() {
 								<FormControl
 									size="lg"
 									isDisabled={false}
-									isInvalid={formState.errors.email ? true : false}
+									isInvalid={formState.errors.password ? true : false}
 									isReadOnly={false}
 									isRequired={true}
 								>

@@ -48,7 +48,19 @@ export function useSecureStorage(key: string): UseAsyncStateHook<string> {
 	const [data, setData] = useAsyncState<string>()
 
 	React.useEffect(() => {
-		getData(key)
+		if (Platform.OS === 'web') {
+			try {
+				if (typeof localStorage !== 'undefined') {
+					setData(localStorage.getItem(key))
+				}
+			} catch (e) {
+				console.error('Local storage is unavailable:', e)
+			}
+		} else {
+			SecureStore.getItemAsync(key).then((value) => {
+				setData(value)
+			})
+		}
 	}, [key])
 
 	const setValue = React.useCallback(
@@ -60,15 +72,15 @@ export function useSecureStorage(key: string): UseAsyncStateHook<string> {
 	)
 
 	const getData = async (key: string) => {
-		try {
-			const value = await SecureStore.getItemAsync(key)
-			setData(value)
-		} catch (error) {
-			console.log(
-				`Error fetching data with key:(${key}) from secure storage:`,
-				error,
-			)
-		}
+		// try {
+		// 	const value = await SecureStore.getItemAsync(key)
+		// 	setData(value)
+		// } catch (error) {
+		// 	console.log(
+		// 		`Error fetching data with key:(${key}) from secure storage:`,
+		// 		error,
+		// 	)
+		// }
 	}
 
 	return [data, setValue]

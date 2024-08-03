@@ -45,7 +45,7 @@
     "expo-status-bar": "~1.12.1",
     "expo-system-ui": "~3.0.7",
     "expo-web-browser": "~13.0.3",
-    "lucide-react": "^0.419.0",
+    "ky": "^1.5.0",
     "lucide-react-native": "^0.424.0",
     "nativewind": "^4.0.36",
     "react": "18.2.0",
@@ -59,7 +59,8 @@
     "react-native-svg": "15.2.0",
     "react-native-web": "~0.19.10",
     "tailwindcss": "^3.4.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "expo-dev-client": "~4.0.21"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

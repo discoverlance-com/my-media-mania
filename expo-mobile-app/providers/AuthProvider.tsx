@@ -1,15 +1,16 @@
 import { useSecureStorage } from '@/hooks/useSecureStorage'
 import { createContext, useContext, type PropsWithChildren } from 'react'
+import ky, { HTTPError } from 'ky'
 
 const AUTH_STATE_KEY = '__auth__state'
 
 const AuthContext = createContext<{
-	signInWithPassword: (email: string, password: string) => void
+	signInWithPassword: (email: string, password: string) => Promise<void>
 	signOut: () => void
 	session?: string | null
 	isLoading: boolean
 }>({
-	signInWithPassword: (email: string, password: string) => null,
+	signInWithPassword: async (email: string, password: string) => {},
 	signOut: () => null,
 	session: null,
 	isLoading: false,
@@ -29,10 +30,17 @@ export function useSession() {
 export function AuthProvider({ children }: PropsWithChildren) {
 	const [[isLoading, session], setSession] = useSecureStorage(AUTH_STATE_KEY)
 
-	const signInWithPassword = (email: string, password: string) => {
-		//TODO: make api request to login
-		//TODO: set session to user id
-		// setSession(userId)
+	const signInWithPassword = async (email: string, password: string) => {
+		const response = await ky
+			.post(process.env.EXPO_PUBLIC_LOGIN_API_URL!, {
+				json: {
+					username: email,
+					password,
+				},
+			})
+			.json<{ message: string; id: string }>()
+
+		setSession(response.id)
 	}
 
 	return (
