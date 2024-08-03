@@ -1,9 +1,9 @@
-import * as bcrypt from 'https://deno.land/x/bcrypt@v0.3.0/mod.ts'
+import { compareSync } from 'https://deno.land/x/bcrypt@v0.3.0/mod.ts'
 
 const kv = await Deno.openKv()
 
-async function verifyPassword(password: string, hashedPassword: string) {
-	const isMatch = await bcrypt.compare(password, hashedPassword)
+function verifyPassword(password: string, hashedPassword: string) {
+	const isMatch = compareSync(password, hashedPassword)
 	return isMatch
 }
 
@@ -26,7 +26,7 @@ Deno.serve(async (request: Request) => {
 
 	if (result && result.value) {
 		// verify password
-		const isMatch = await verifyPassword(password, result.value.password)
+		const isMatch = verifyPassword(password, result.value.password)
 		if (!isMatch) {
 			return new Response(
 				JSON.stringify({ message: 'Invalid username or password' }),
