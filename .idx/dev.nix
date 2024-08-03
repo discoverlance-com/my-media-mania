@@ -25,6 +25,7 @@
       "esbenp.prettier-vscode"
       "dbaeumer.vscode-eslint"
       "bradlc.vscode-tailwindcss"
+      "denoland.vscode-deno"
     ];
 
     # Enable previews

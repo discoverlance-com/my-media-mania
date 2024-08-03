@@ -9,9 +9,12 @@ Deno.serve(async (request: Request) => {
 		return new Response('Missing username or password', { status: 422 })
 	}
 
-	const result = await kv.get(['users', username])
+	const result = await kv.get<{ password: string; id: string }>([
+		'users',
+		username,
+	])
 
-	if (result && result.value?.password === password) {
+	if (result && result.value && result.value.password === password) {
 		return new Response(JSON.stringify({ id: result.value.id }), {
 			status: 200,
 		})
