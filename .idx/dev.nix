@@ -16,12 +16,15 @@
   ];
 
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    EXPO_USE_FAST_RESOLVER = 1; 
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       # "vscodevim.vim"
       "dsznajder.es7-react-js-snippets"
+      "msjsdiag.vscode-react-native"
       "esbenp.prettier-vscode"
       "dbaeumer.vscode-eslint"
       "bradlc.vscode-tailwindcss"
@@ -51,13 +54,33 @@
       # Runs when a workspace is first created
       onCreate = {
         # Example: install JS dependencies from NPM
-        # npm-install = "npm install";
-        install-eas = "npm install -g eas-cli";
+        npm-install = "npm ci --prefer-offline --no-audit --no-progress --timing && npm i @expo/ngrok@^4.1.0";
+        eas-install = "npm install -g eas-cli";
       };
       # Runs when the workspace is (re)started
       onStart = {
-        # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
+        connect-device = ''
+          adb -s localhost:5554 wait-for-device
+        '';
+        android = ''
+          npm run android -- --port 5554 --tunnel
+        '';
+      };
+    };
+
+    # Enable previews and customize configuration
+    previews = {
+      enable = true;
+      previews = {
+        # web = {
+        #  command = ["npm" "run" "web" "--" "--port" "$PORT"];
+        #  manager = "web";
+        #};
+        android = {
+          # noop
+          command = ["tail" "-f" "/dev/null"];
+          manager = "web";
+        };
       };
     };
   };
