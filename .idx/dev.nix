@@ -16,15 +16,14 @@
   ];
 
   # Sets environment variables in the workspace
-  env = {
-    EXPO_USE_FAST_RESOLVER = 1; 
-  };
+  env = {};
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       # "vscodevim.vim"
       "dsznajder.es7-react-js-snippets"
       "msjsdiag.vscode-react-native"
+      "ms-vscode.js-debug"
       "esbenp.prettier-vscode"
       "dbaeumer.vscode-eslint"
       "bradlc.vscode-tailwindcss"
@@ -34,7 +33,7 @@
 
     # Enable previews
     previews = {
-      enable = true;
+      enable = false;
       previews = {
         # web = {
         #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
@@ -46,6 +45,11 @@
         #     PORT = "$PORT";
         #   };
         # };
+        # android = {
+        #   # noop
+        #   command = ["tail" "-f" "/dev/null"];
+        #   manager = "web";
+        # };
       };
     };
 
@@ -54,34 +58,18 @@
       # Runs when a workspace is first created
       onCreate = {
         # Example: install JS dependencies from NPM
-        npm-install = "npm ci --prefer-offline --no-audit --no-progress --timing && npm i @expo/ngrok@^4.1.0";
+        npm-install = "cd expo-mobile-app && npm ci --prefer-offline --no-audit --no-progress --timing && npm i @expo/ngrok@^4.1.0";
         eas-install = "npm install -g eas-cli";
       };
       # Runs when the workspace is (re)started
-      onStart = {
-        connect-device = ''
-          adb -s localhost:5554 wait-for-device
-        '';
-        android = ''
-          npm run android -- --port 5554 --tunnel
-        '';
-      };
-    };
-
-    # Enable previews and customize configuration
-    previews = {
-      enable = true;
-      previews = {
-        # web = {
-        #  command = ["npm" "run" "web" "--" "--port" "$PORT"];
-        #  manager = "web";
-        #};
-        android = {
-          # noop
-          command = ["tail" "-f" "/dev/null"];
-          manager = "web";
-        };
-      };
+      # onStart = {
+      #   connect-device = ''
+      #     adb -s localhost:5554 wait-for-device
+      #   '';
+      #   android = ''
+      #     cd expo-mobile-app && npm run android -- --port 5554 --tunnel
+      #   '';
+      # };
     };
   };
 }
